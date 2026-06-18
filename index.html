@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>昆城广场官网升级 · 提案展示</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0f1724 0%, #1a2a3a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #e8e0d4;
+    }
+    .container { max-width: 780px; width: 100%; }
+    h1 {
+      font-size: 28px; font-weight: 700; margin-bottom: 8px;
+      background: linear-gradient(135deg, #e8d5a3, #f0e8c8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 15px; color: #8a7e6b; margin-bottom: 40px;
+      border-bottom: 1px solid rgba(232,213,163,0.15); padding-bottom: 24px;
+    }
+    .card {
+      background: rgba(255,250,240,0.06);
+      border: 1px solid rgba(232,213,163,0.15);
+      border-radius: 16px; padding: 32px; margin-bottom: 20px;
+      transition: all 0.3s; cursor: pointer;
+      display: block; text-decoration: none; color: inherit;
+    }
+    .card:hover {
+      background: rgba(255,250,240,0.10);
+      border-color: rgba(232,213,163,0.35);
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 12px;
+    }
+    .badge {
+      display: inline-block; padding: 4px 12px; border-radius: 6px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+    }
+    .badge-pc { background: #203f36; color: #b8d5c8; }
+    .badge-wx { background: #1a3a2a; color: #b8e6c8; }
+    .card h2 { font-size: 20px; font-weight: 600; }
+    .card p { font-size: 14px; color: #9a8e7b; line-height: 1.7; }
+    .btn-open {
+      display: inline-block; margin-top: 14px;
+      padding: 8px 20px; border: 1px solid rgba(232,213,163,0.3);
+      border-radius: 8px; font-size: 13px; color: #e8d5a3; transition: all 0.2s;
+    }
+    .card:hover .btn-open {
+      background: rgba(232,213,163,0.12); border-color: rgba(232,213,163,0.5);
+    }
+    .footer {
+      margin-top: 40px; text-align: center; font-size: 12px; color: #4a3e2b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>昆城广场官网升级</h1>
+    <p class="subtitle">提案展示 · 点击卡片即可浏览</p>
+
+    <a class="card" href="pc-proposal.html" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-pc">PC 官网</span>
+        <h2>昆城广场官网升级 · PC 提案总览</h2>
+      </div>
+      <p>官网 PC 端升级方案，涵盖品牌策略定位、交互框架重构、视觉语言体系、落地页逐页设计及开发实施路线图。</p>
+      <span class="btn-open">浏览提案 →</span>
+    </a>
+
+    <a class="card" href="wechat-pack.html" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-wx">微信生态</span>
+        <h2>昆城广场微信生态 · 小程序提案总览</h2>
+      </div>
+      <p>微信生态数字化升级方案，涵盖双版本 UI 对比（生活聚合版 vs 资产运营版）、功能架构、流量裂变机制及实施计划。</p>
+      <span class="btn-open">浏览提案 →</span>
+    </a>
+
+    <div class="footer">Codex 设计提案 · 2026</div>
+  </div>
+</body>
+</html>

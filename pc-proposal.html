@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>昆城广场官网升级 PC 提案总览</title>
+  <style>
+    :root {
+      --ink: #1e211d;
+      --muted: #746f65;
+      --cream: #fffaf0;
+      --paper: #f4efe5;
+      --green: #203f36;
+      --deep: #102320;
+      --water: #2b9eb3;
+      --gold: #b89b61;
+      --line: rgba(30,33,29,.14);
+      --shadow: 0 28px 80px rgba(24,29,25,.18);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #e8dfd2, #f6efe4 42%, #e4dacb);
+    }
+    a { color: inherit; text-decoration: none; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 34px;
+      background: rgba(255,250,240,.86);
+      border-bottom: 1px solid rgba(30,33,29,.12);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+    .mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      border-radius: 8px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: #514d45;
+      font-size: 14px;
+    }
+    .deck {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 48px;
+      align-items: center;
+      padding: 64px;
+      color: #fff;
+      background:
+        linear-gradient(110deg, rgba(16,35,32,.98), rgba(32,63,54,.82) 56%, rgba(184,155,97,.65)),
+        var(--deep);
+      box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 44px;
+      bottom: -28px;
+      width: 560px;
+      height: 480px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.2) 0 1px, transparent 1px 54px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.14) 0 1px, transparent 1px 58px);
+      border: 1px solid rgba(255,255,255,.22);
+      clip-path: polygon(18% 0, 100% 10%, 86% 100%, 0 84%);
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .kicker {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 28px;
+      font-size: clamp(54px, 6vw, 88px);
+      line-height: 1.06;
+      font-weight: 660;
+    }
+    .hero p {
+      max-width: 660px;
+      color: rgba(255,255,255,.82);
+      font-size: 20px;
+      line-height: 1.85;
+    }
+    .hero-card {
+      position: relative;
+      z-index: 3;
+      padding: 32px;
+      background: rgba(255,250,240,.94);
+      color: var(--ink);
+      border-radius: 10px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.18);
+    }
+    .hero-card h3 { font-size: 25px; margin-bottom: 16px; }
+    .hero-card p { color: var(--muted); font-size: 15px; line-height: 1.75; }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .chip {
+      padding: 8px 11px;
+      color: var(--green);
+      border: 1px solid rgba(32,63,54,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.58);
+      font-size: 13px;
+    }
+    .section {
+      margin-top: 28px;
+      padding: 44px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+    h2 {
+      margin-bottom: 0;
+      max-width: 760px;
+      font-size: 42px;
+      line-height: 1.16;
+      font-weight: 650;
+    }
+    .section-head p {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .logic-grid,
+    .channel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .card {
+      min-height: 190px;
+      padding: 24px;
+      background: #fffdf7;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .card small {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .mockup {
+      overflow: hidden;
+      background: #fffdf7;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 18px 50px rgba(24,29,25,.12);
+    }
+    .mockup-title {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 20px;
+      color: #fff;
+      background: var(--deep);
+      font-size: 13px;
+    }
+    .screen {
+      position: relative;
+      min-height: 580px;
+      color: #fff;
+      padding: 40px;
+      background:
+        linear-gradient(90deg, rgba(16,35,32,.96), rgba(16,35,32,.52) 58%, rgba(16,35,32,.1)),
+        linear-gradient(145deg, #203f36, #75875f 55%, #d8a767);
+    }
+    .mockup.asset .screen {
+      background:
+        linear-gradient(90deg, rgba(12,26,24,.98), rgba(12,26,24,.62) 58%, rgba(12,26,24,.1)),
+        linear-gradient(145deg, #102320, #344d49 56%, #b89b61);
+    }
+    .screen h3 {
+      max-width: 430px;
+      margin: 70px 0 18px;
+      font-size: 52px;
+      line-height: 1.05;
+    }
+    .screen p {
+      max-width: 420px;
+      color: rgba(255,255,255,.82);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    .building {
+      position: absolute;
+      right: 38px;
+      top: 98px;
+      width: 260px;
+      height: 330px;
+      border-radius: 10px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.2) 0 1px, transparent 1px 38px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.14) 0 1px, transparent 1px 42px);
+      border: 1px solid rgba(255,255,255,.24);
+      transform: skewX(-8deg);
+    }
+    .action-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 18px;
+      margin-top: -48px;
+      position: relative;
+      z-index: 2;
+    }
+    .action {
+      min-height: 92px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 12px 34px rgba(24,29,25,.12);
+      color: var(--ink);
+    }
+    .action b { display: block; margin-bottom: 7px; font-size: 16px; }
+    .action span { color: var(--muted); font-size: 12px; line-height: 1.35; }
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .flow-panel {
+      padding: 30px;
+      color: #fff;
+      background:
+        linear-gradient(140deg, rgba(16,35,32,.98), rgba(32,63,54,.88)),
+        var(--deep);
+      border-radius: 12px;
+    }
+    .flow-panel h3 { font-size: 32px; margin-bottom: 18px; }
+    .flow-panel p { color: rgba(255,255,255,.78); line-height: 1.75; }
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 16px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 10px;
+    }
+    .step i {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      color: #fff;
+      background: var(--water);
+      border-radius: 50%;
+      font-style: normal;
+      font-weight: 700;
+    }
+    .step b { display: block; margin-bottom: 5px; }
+    .step span { color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.45; }
+    .next {
+      margin-top: 28px;
+      padding: 36px 42px;
+      color: #fff;
+      background:
+        linear-gradient(100deg, rgba(16,35,32,.98), rgba(32,63,54,.92)),
+        var(--deep);
+      box-shadow: var(--shadow);
+    }
+    .next h2 { color: #fff; margin-bottom: 14px; }
+    .next p { color: rgba(255,255,255,.78); font-size: 17px; line-height: 1.8; }
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .deck { padding: 14px; }
+      .hero, .section, .next { padding: 26px; }
+      .hero, .logic-grid, .channel-grid, .mockup-grid, .flow { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      h1 { font-size: 44px; }
+      h2 { font-size: 30px; margin-bottom: 14px; }
+      .building { opacity: .35; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top"><span class="mark">K</span><span>昆城广场官网升级</span></a>
+    <div class="nav-links">
+      <a href="#why">升级判断</a>
+      <a href="#visual">两版效果</a>
+      <a href="#growth">增长闭环</a>
+      <a href="#next">下一步</a>
+    </div>
+  </header>
+
+  <main class="deck" id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">Life Hub @ Kunshan · PC Proposal View</p>
+        <h1>让昆城官网从展示页，升级为线上增长入口</h1>
+        <p>面向品牌负责人的桌面版总览：一屏看清为什么要升级、两版视觉方向、官网与社媒会员如何协同，以及下一步可以先做什么。</p>
+      </div>
+      <div class="hero-card">
+        <h3>核心判断</h3>
+        <p>昆城广场不只是需要一个更好看的官网，而是需要一个能承接搜索、社媒、会员、停车、活动和招商的本地数字入口。</p>
+        <div class="chips">
+          <span class="chip">SEO / GEO</span>
+          <span class="chip">会员承接</span>
+          <span class="chip">活动运营</span>
+          <span class="chip">招商背书</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="section-head">
+        <h2>这不是一次单纯改版，而是一项数字资产投资</h2>
+        <p>官网要从“资料陈列”变成“可运营入口”，让用户、品牌方和集团价值都能被更有效地承接。</p>
+      </div>
+      <div class="logic-grid">
+        <div class="card"><small>01</small><h3>搜索可见</h3><p>让昆城在品牌词、场景词和智能推荐里拥有可被引用的官方内容。</p></div>
+        <div class="card"><small>02</small><h3>到访服务</h3><p>找店、看活动、查停车、楼层导览，解决用户到访前和到访中的问题。</p></div>
+        <div class="card"><small>03</small><h3>会员承接</h3><p>活动报名、停车权益、品牌券包，把线上兴趣转成会员关系。</p></div>
+        <div class="card"><small>04</small><h3>招商背书</h3><p>让品牌方能快速理解项目价值、客群、空间资源和长期运营能力。</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="visual">
+      <div class="section-head">
+        <h2>两版效果不是二选一，而是主站与背书页面的分工</h2>
+        <p>A 版建议作为官网主首页；B 版更适合招商合作、空间项目、崇邦与 ESG 页面。</p>
+      </div>
+      <div class="mockup-grid">
+        <article class="mockup">
+          <div class="mockup-title"><b>A 版 · 城市生活中心</b><span>消费者 / 活动 / 会员 / 到访服务</span></div>
+          <div class="screen">
+            <p class="kicker">Life Hub @ Kunshan</p>
+            <h3>昆山城心<br>生活主场</h3>
+            <p>让本地家庭更容易找到周末来昆城的理由。</p>
+            <div class="building"></div>
+          </div>
+          <div class="action-row">
+            <div class="action"><b>找美食</b><span>餐饮聚会</span></div>
+            <div class="action"><b>看活动</b><span>市集会员日</span></div>
+            <div class="action"><b>楼层导览</b><span>品牌位置</span></div>
+            <div class="action"><b>停车交通</b><span>入口信息</span></div>
+          </div>
+        </article>
+        <article class="mockup asset">
+          <div class="mockup-title"><b>B 版 · 长期资产运营</b><span>招商合作 / 集团价值 / ESG 背书</span></div>
+          <div class="screen">
+            <p class="kicker">Chongbang Life Hub</p>
+            <h3>以长期运营<br>更新城市商业</h3>
+            <p>用项目价值、复合业态和 ESG 背书降低合作方理解成本。</p>
+            <div class="building"></div>
+          </div>
+          <div class="action-row">
+            <div class="action"><b>项目概览</b><span>区位客群</span></div>
+            <div class="action"><b>招商合作</b><span>空间资源</span></div>
+            <div class="action"><b>运营活动</b><span>会员体系</span></div>
+            <div class="action"><b>ESG</b><span>长期价值</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="growth">
+      <div class="section-head">
+        <h2>官网上线后，要和社媒、会员、活动一起改善生意</h2>
+        <p>官网是中枢，公众号、小红书、抖音、地图平台和招商沟通都是流量入口或转化场景。</p>
+      </div>
+      <div class="flow">
+        <div class="flow-panel">
+          <h3>增长闭环</h3>
+          <p>从被看到，到被种草，再到会员承接、到店转化和招商背书。</p>
+          <div class="steps">
+            <div class="step"><i>1</i><div><b>搜索与智能推荐</b><span>SEO / GEO 内容基础，让昆城被搜到、被提到。</span></div></div>
+            <div class="step"><i>2</i><div><b>内容种草</b><span>周末指南、亲子路线、餐饮推荐分发到社媒。</span></div></div>
+            <div class="step"><i>3</i><div><b>会员承接</b><span>活动报名、停车权益、品牌券包沉淀会员。</span></div></div>
+            <div class="step"><i>4</i><div><b>到店转化</b><span>楼层导览、停车交通、活动提醒降低到访成本。</span></div></div>
+          </div>
+        </div>
+        <div class="channel-grid">
+          <div class="card"><small>官网</small><h3>内容中枢</h3><p>品牌、活动、楼层导览、招商与 SEO / GEO 页面。</p></div>
+          <div class="card"><small>公众号</small><h3>会员触达</h3><p>会员权益、活动报名、停车流程和到店提醒。</p></div>
+          <div class="card"><small>小红书 / 抖音</small><h3>内容扩散</h3><p>探店、亲子、餐饮、活动短内容持续种草。</p></div>
+          <div class="card"><small>招商合作</small><h3>商业线索</h3><p>项目价值、空间资源和运营案例在线承接。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="next" id="next">
+      <h2>建议下一步</h2>
+      <p>先做一个「楼层导览 + 首页方向」高保真 Demo，让团队直观看到新官网如何服务到访、活动、会员和招商，再判断是否进入完整升级。</p>
+    </section>
+  </main>
+</body>
+</html>

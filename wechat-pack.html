@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>昆城广场官网升级微信沟通图</title>
+  <style>
+    :root {
+      --ink: #1e211d;
+      --muted: #746f65;
+      --paper: #f6f0e6;
+      --cream: #fffaf0;
+      --green: #203f36;
+      --deep: #102320;
+      --water: #2b9eb3;
+      --gold: #b89b61;
+      --brick: #b96a4b;
+      --line: rgba(30,33,29,.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+      background: #ded5c8;
+    }
+    html { scrollbar-width: none; }
+    body::-webkit-scrollbar { display: none; }
+    .wrap {
+      display: grid;
+      gap: 28px;
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .poster {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 1440px;
+      padding: 72px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+    }
+    .poster.dark {
+      color: #fff;
+      background:
+        linear-gradient(140deg, rgba(16,35,32,.98), rgba(32,63,54,.88) 54%, rgba(184,155,97,.72)),
+        var(--deep);
+    }
+    .poster.water {
+      background:
+        linear-gradient(180deg, rgba(255,250,240,.96), rgba(232,240,227,.94)),
+        var(--cream);
+    }
+    .poster.asset {
+      color: #fff;
+      background:
+        linear-gradient(140deg, rgba(12,26,24,.98), rgba(33,48,45,.94) 52%, rgba(184,155,97,.68)),
+        var(--deep);
+    }
+    .kicker {
+      margin: 0 0 22px;
+      color: var(--gold);
+      font-size: 24px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .dark .kicker,
+    .asset .kicker { color: rgba(255,255,255,.7); }
+    h1 {
+      margin: 0;
+      font-size: 82px;
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 660;
+    }
+    h2 {
+      margin: 0;
+      font-size: 64px;
+      line-height: 1.12;
+      font-weight: 650;
+    }
+    h3 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.25;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 26px;
+      line-height: 1.75;
+    }
+    .dark p,
+    .asset p { color: rgba(255,255,255,.78); }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 120px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .mark {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      border-radius: 10px;
+    }
+    .dark .mark,
+    .asset .mark { background: rgba(255,255,255,.16); }
+    .cover-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+    .cover-copy p {
+      margin-top: 34px;
+      max-width: 760px;
+      font-size: 30px;
+    }
+    .cover-visual {
+      position: absolute;
+      right: -80px;
+      bottom: -40px;
+      width: 680px;
+      height: 560px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 2px, transparent 2px 58px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.14) 0 2px, transparent 2px 58px);
+      border: 1px solid rgba(255,255,255,.22);
+      clip-path: polygon(16% 0, 100% 10%, 84% 100%, 0 82%);
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 48px;
+    }
+    .chip {
+      padding: 14px 18px;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      font-size: 22px;
+    }
+    .screen {
+      margin-top: 48px;
+      overflow: hidden;
+      min-height: 850px;
+      background: #fffaf0;
+      border-radius: 18px;
+      box-shadow: 0 30px 90px rgba(24,29,25,.24);
+      border: 1px solid rgba(30,33,29,.12);
+    }
+    .screen-nav {
+      height: 86px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      color: #fff;
+      background: rgba(16,35,32,.92);
+    }
+    .screen-nav span {
+      font-size: 20px;
+      opacity: .82;
+      margin-left: 22px;
+    }
+    .hero {
+      position: relative;
+      min-height: 560px;
+      padding: 56px 40px;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(16,35,32,.96), rgba(16,35,32,.54) 58%, rgba(16,35,32,.12)),
+        linear-gradient(145deg, #203f36, #75875f 55%, #d8a767);
+    }
+    .asset .hero {
+      background:
+        linear-gradient(90deg, rgba(12,26,24,.98), rgba(12,26,24,.62) 58%, rgba(12,26,24,.10)),
+        linear-gradient(145deg, #102320, #344d49 56%, #b89b61);
+    }
+    .hero h2 {
+      margin-top: 18px;
+      max-width: 580px;
+      font-size: 68px;
+    }
+    .hero p {
+      margin-top: 22px;
+      max-width: 560px;
+      color: rgba(255,255,255,.82);
+      font-size: 24px;
+    }
+    .building {
+      position: absolute;
+      right: 42px;
+      top: 58px;
+      width: 380px;
+      height: 430px;
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.2) 0 2px, transparent 2px 48px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.16) 0 2px, transparent 2px 52px),
+        linear-gradient(135deg, rgba(255,250,230,.68), rgba(49,71,65,.34));
+      border: 1px solid rgba(255,255,255,.26);
+      box-shadow: 0 26px 60px rgba(0,0,0,.2);
+      transform: skewX(-8deg);
+    }
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: -46px;
+      padding: 0 34px;
+      position: relative;
+      z-index: 5;
+    }
+    .action {
+      min-height: 116px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(24,29,25,.12);
+      color: var(--ink);
+    }
+    .action b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+    .action span {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+    .module-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      padding: 36px;
+    }
+    .photo-tile {
+      min-height: 300px;
+      padding: 30px;
+      color: #fff;
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.62)),
+        linear-gradient(145deg, #6f835f, #d1a264);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .photo-tile h3 {
+      margin-bottom: 10px;
+      font-size: 34px;
+    }
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+    .list div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 64px;
+      padding: 18px;
+      background: #f7f1e7;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 650;
+      color: var(--ink);
+    }
+    .list span {
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .caption {
+      margin-top: 34px;
+      padding: 28px;
+      background: rgba(255,255,255,.64);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--ink);
+    }
+    .caption p {
+      font-size: 24px;
+    }
+    .flow {
+      display: grid;
+      gap: 18px;
+      margin-top: 52px;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 20px;
+      padding: 26px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+    .flow-step i {
+      display: grid;
+      place-items: center;
+      width: 70px;
+      height: 70px;
+      color: #fff;
+      background: var(--green);
+      border-radius: 50%;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+    }
+    .flow-step b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 28px;
+    }
+    .flow-step span {
+      color: var(--muted);
+      font-size: 21px;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section style="background:#fffaf0;border:1px solid rgba(30,33,29,.14);padding:28px 34px;font-size:22px;line-height:1.7;">
+      <b>电脑端完整提案：</b>
+      <a href="pc-proposal.html" style="color:#203f36;text-decoration:underline;">打开 PC 端提案总览</a>
+      <span style="color:#746f65;"> · 适合在电脑上横向浏览整体判断、两版效果和增长闭环。</span>
+    </section>
+    <section class="poster dark" id="p1">
+      <div class="logo"><span class="mark">K</span><span>昆城广场 · Life Hub @ Kunshan</span></div>
+      <div class="cover-copy">
+        <p class="kicker">Website Upgrade Proposal</p>
+        <h1>不只是官网改版，<br>而是昆山城市生活中心的数字入口升级</h1>
+        <p>让搜索、活动、会员、停车、品牌内容与招商合作形成线上闭环，为昆城广场创造持续可运营的数字资产。</p>
+        <div class="chips">
+          <span class="chip">搜索可见</span>
+          <span class="chip">社媒种草</span>
+          <span class="chip">会员承接</span>
+          <span class="chip">到店转化</span>
+          <span class="chip">招商背书</span>
+        </div>
+      </div>
+      <div class="cover-visual"></div>
+    </section>
+
+    <section class="poster water" id="p2">
+      <p class="kicker">Direction A · Consumer Experience</p>
+      <h1>推荐主方向：<br>城市生活中心首页</h1>
+      <div class="screen">
+        <div class="screen-nav">
+          <b>昆城广场 Life Hub @ Kunshan</b>
+          <div><span>品牌美食</span><span>本周活动</span><span>会员权益</span><span>停车交通</span></div>
+        </div>
+        <div class="hero">
+          <p class="kicker">Life Hub @ Kunshan</p>
+          <h2>昆山城心<br>生活主场</h2>
+          <p>集购物、餐饮、亲子、休闲与社区活动于一体，让本地家庭更容易找到周末来昆城的理由。</p>
+          <div class="building"></div>
+        </div>
+        <div class="actions">
+          <div class="action"><b>找美食</b><span>午餐、聚会、亲子餐厅</span></div>
+          <div class="action"><b>看活动</b><span>市集、会员日、亲子活动</span></div>
+          <div class="action"><b>楼层导览</b><span>品牌位置与服务设施</span></div>
+          <div class="action"><b>停车交通</b><span>自驾、公交、入口信息</span></div>
+        </div>
+        <div class="module-grid">
+          <div class="photo-tile"><h3>周末家庭生活节</h3><p>活动、品牌、会员权益统一承接</p></div>
+          <div class="list">
+            <div>美食餐饮 <span>查看品牌</span></div>
+            <div>咖啡甜品 <span>休闲聚会</span></div>
+            <div>亲子教育 <span>家庭友好</span></div>
+            <div>会员专享 <span>券包权益</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <p><b>适合作为新版官网主首页。</b>它直接服务消费者到访、活动传播、会员权益和停车找店等高频任务。</p>
+      </div>
+    </section>
+
+    <section class="poster asset" id="p3">
+      <p class="kicker">Direction B · Brand & Leasing</p>
+      <h1>品牌背书方向：<br>招商合作与集团价值页面</h1>
+      <div class="screen">
+        <div class="screen-nav">
+          <b>昆城广场 Life Hub @ Kunshan</b>
+          <div><span>项目价值</span><span>品牌组合</span><span>招商合作</span><span>ESG</span></div>
+        </div>
+        <div class="hero">
+          <p class="kicker">Chongbang Life Hub</p>
+          <h2>以长期运营<br>更新城市商业</h2>
+          <p>用项目价值、复合业态、运营活动和 ESG 背书，降低品牌方理解昆城的成本。</p>
+          <div class="building"></div>
+        </div>
+        <div class="actions">
+          <div class="action"><b>项目概览</b><span>区位、体量、客群</span></div>
+          <div class="action"><b>招商合作</b><span>品牌入驻与空间资源</span></div>
+          <div class="action"><b>运营活动</b><span>社区活动与会员体系</span></div>
+          <div class="action"><b>可持续发展</b><span>LEED 与绿色运营</span></div>
+        </div>
+        <div class="module-grid">
+          <div class="photo-tile"><h3>城市综合体资产</h3><p>商业、办公、居住、社区活动的复合入口</p></div>
+          <div class="list">
+            <div>项目价值 <span>区位客群</span></div>
+            <div>业态组合 <span>品牌证明</span></div>
+            <div>活动资源 <span>运营能力</span></div>
+            <div>ESG 背书 <span>长期价值</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <p><b>不建议单独作为全站主方向。</b>更适合成为「招商合作」「空间与项目」「崇邦与 ESG」等一级页面的视觉气质。</p>
+      </div>
+    </section>
+
+    <section class="poster water" id="p4">
+      <p class="kicker">Growth System</p>
+      <h1>官网上线后，要和社媒、会员、活动一起改善生意</h1>
+      <div class="flow">
+        <div class="flow-step"><i>1</i><div><b>搜索与智能推荐</b><span>官网内容服务传统 SEO，也为地图平台、内容平台和 GEO 生成式搜索提供可引用的品牌信息。</span></div></div>
+        <div class="flow-step"><i>2</i><div><b>内容种草</b><span>周末指南、亲子路线、餐饮推荐、活动日历，从官网拆分到公众号、小红书、抖音和视频号。</span></div></div>
+        <div class="flow-step"><i>3</i><div><b>会员承接</b><span>活动报名、停车权益、品牌券包，把流量导入公众号和会员体系。</span></div></div>
+        <div class="flow-step"><i>4</i><div><b>到店转化</b><span>楼层导览、停车交通、品牌详情和活动提醒，降低用户到访成本。</span></div></div>
+        <div class="flow-step"><i>5</i><div><b>招商背书</b><span>项目价值、客群、空间资源和运营案例，成为 24 小时在线的招商资料。</span></div></div>
+      </div>
+      <div class="caption">
+        <p><b>建议下一步：</b>先做一个「楼层导览 + 首页方向」高保真 Demo，让团队直观看到新官网如何服务到访、活动、会员和招商，再判断是否进入完整升级。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
